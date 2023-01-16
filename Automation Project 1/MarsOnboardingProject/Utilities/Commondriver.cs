@@ -5,11 +5,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using NUnit.Framework;
 
-namespace Automation_Project_1.Utilities
+namespace MarsOnboardingProject.Utilities
 {
-    internal class Commondriver
+    public class CommonDriver
     {
-        IWebDriver driver = new ChromeDriver();
+        public IWebDriver driver;
+
+
+        public void loginactions()
+        {
+            driver = new ChromeDriver();
+
+        }
+
+        public void CloseTestRun()
+        {
+            driver.Quit();
+        }
+
     }
+
 }
