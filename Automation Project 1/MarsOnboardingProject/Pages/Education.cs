@@ -67,9 +67,6 @@ namespace Automation_Project_1.Pages
         {
 
         }
-        public void ErrorEducation(IWebDriver driver)
-        {
-
-        }
+       
     }
 }

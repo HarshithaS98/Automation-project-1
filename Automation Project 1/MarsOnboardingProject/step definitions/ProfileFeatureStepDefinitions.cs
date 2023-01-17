@@ -59,12 +59,12 @@ namespace MarsOnboardingProject.StepDefinitions
             throw new PendingStepException();
         }
 
-        [When(@"Lefted <language> field blank or <level> not choosen or when duplicate data exists")]
-        public void WhenLeftedLanguageFieldBlankOrLevelNotChoosenOrWhenDuplicateDataExists()
-        {
-            LanguagePage LanguagePageObj = new LanguagePage();
-            LanguagePageObj.Errorlanguage(driver);
-        }
+        // [When(@"Lefted <language> field blank or <level> not choosen or when duplicate data exists")]
+        //public void WhenLeftedLanguageFieldBlankOrLevelNotChoosenOrWhenDuplicateDataExists()
+        //{
+        //    LanguagePage LanguagePageObj = new LanguagePage();
+        //   LanguagePageObj.Errorlanguage(driver);
+        //}
 
         [Then(@"error message should be displayed")]
         public void ThenErrorMessageShouldBeDisplayed()
@@ -111,12 +111,12 @@ namespace MarsOnboardingProject.StepDefinitions
             throw new PendingStepException();
         }
 
-        [When(@"Lefted <skill> field blank or <skilllevel> not choosen or when duplicate data exists")]
-        public void WhenLeftedSkillFieldBlankOrSkilllevelNotChoosenOrWhenDuplicateDataExists()
-        {
-            skillsPage skillsPageObj = new skillsPage();
-            skillsPageObj.Errorskill(driver);
-        }
+        // [When(@"Lefted <skill> field blank or <skilllevel> not choosen or when duplicate data exists")]
+        // public void WhenLeftedSkillFieldBlankOrSkilllevelNotChoosenOrWhenDuplicateDataExists()
+        // {
+        //    skillsPage skillsPageObj = new skillsPage();
+        //  skillsPageObj.Errorskill(driver);
+        // }
 
         [When(@"When Added India and JNTU and Btech Bachelors (.*) to the education")]
         public void WhenWhenAddedIndiaAndJNTUAndBtechBachelorsToTheEducation(int p0)
@@ -157,15 +157,16 @@ namespace MarsOnboardingProject.StepDefinitions
             throw new PendingStepException();
         }
 
-        [When(@"Lefted <country> and <University> and <Title> <Degree> <Graduation year> not choosen or when duplicate data exists")]
-        public void WhenLeftedCountryAndUniversityAndTitleDegreeGraduationYearNotChoosenOrWhenDuplicateDataExists()
-        {
+        // [When(@"Lefted <country> and <University> and <Title> <Degree> <Graduation year> not choosen or when duplicate data exists")]
+        //public void WhenLeftedCountryAndUniversityAndTitleDegreeGraduationYearNotChoosenOrWhenDuplicateDataExists()
+        //{
 
-            Educationpage EducationPageObj = new Educationpage();
-            EducationPageObj.ErrorEducation(driver);
-        }
+        //  Educationpage EducationPageObj = new Educationpage();
+        //EducationPageObj.ErrorEducation(driver);
+        //   }
     }
 }
+
 
 //        [When(@"When Added Manual Tester and (.*) and Times Institue  to the Certifications")]
 //        public void WhenWhenAddedManualTesterAndAndTimesInstitueToTheCertifications(int p0)

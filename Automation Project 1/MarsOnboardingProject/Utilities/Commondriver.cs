@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using NUnit.Framework;
+using Automation_Project_1.Pages;
 
 namespace MarsOnboardingProject.Utilities
 {
@@ -17,7 +18,8 @@ namespace MarsOnboardingProject.Utilities
         public void loginactions()
         {
             driver = new ChromeDriver();
-
+            loginpPage loginPageObj = new loginpPage();
+            loginPageObj.loginActions(driver);
         }
 
         public void CloseTestRun()

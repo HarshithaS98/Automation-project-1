@@ -37,19 +37,44 @@ namespace Automation_Project_1.Pages
             IWebElement addbutton = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/div/div[3]/input[1]"));
             addbutton.Click();
 
-           
+
         }
+
         public void EditLanguage(IWebDriver driver)
         {
+            Thread.Sleep(1000);
+            // Identify language button
+            IWebElement languageeditbutton = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[1]/a[1]"));
+            languageeditbutton.Click();
+            Thread.Sleep(1500);
+            // Identify edit button
+            IWebElement editlanguage = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody/tr/td[3]/span[1]/i"));
+            editlanguage.Click();
+            // clear the previous details for language
+            IWebElement Clearlanguage = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody/tr/td/div/div[1]/input"));
+            Clearlanguage.Clear();
+            Clearlanguage.SendKeys("Telugu");
+            Thread.Sleep(700);
+
+            // change the choose language dropbox
+            IWebElement editchooselanguage = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody/tr/td/div/div[2]/select/option[5]"));
+            editchooselanguage.Click();
+            Thread.Sleep(1500);
+            // save the edited values
+            IWebElement updatelanguage = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody/tr/td/div/span/input[1]"));
+            updatelanguage.Click();
 
         }
         public void DelLanguage(IWebDriver driver)
         {
+            //Identify language button
+            Thread.Sleep(1000);
+            IWebElement languagedelbutton = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[1]/a[1]"));
+            languagedelbutton.Click();
 
-        }
-        public void Errorlanguage(IWebDriver driver)
-        {
-
+            // identify x button
+            IWebElement Dellanguage = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody/tr/td[3]/span[2]/i"));
+            Dellanguage.Click();
         }
     }
 }
