@@ -5,12 +5,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MarsOnboardingProject.Utilities;
 
 namespace Automation_Project_1.Pages
 {
-    public class loginpPage
+    public class loginpPage : CommonDriver
     {
-        public void loginActions(IWebDriver driver)
+        public void loginActions()
         {
             // open browser
             

@@ -1,4 +1,6 @@
-﻿using OpenQA.Selenium;
+﻿using MarsOnboardingProject.Utilities;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace Automation_Project_1.Pages
 {
-    public class Certification
+    public class Certificationpage : CommonDriver
     {
-        public void CreateCertification(IWebDriver driver)
+        public void CreateCertification(string certificate,string Year,string From)
         {
             //Identify certification button
             IWebElement cerbutton = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[1]/a[4]"));
@@ -20,10 +22,7 @@ namespace Automation_Project_1.Pages
 
             //identify certificate or award textbox and add Istqb Certification
             IWebElement certoolbox = driver.FindElement(By.Name("certificationName"));
-            certoolbox.SendKeys("ISTQB");
-            //Identify certify from toolbox and enter sgtqb
-            IWebElement certifytoolbox = driver.FindElement(By.Name("certificationFrom"));
-            certifytoolbox.SendKeys("Adobe");
+            certoolbox.SendKeys(From);
             // identify year dropbox and choose 2022
             IWebElement yearCer = driver.FindElement(By.Name("certificationYear"));
             //choose2022
@@ -34,7 +33,14 @@ namespace Automation_Project_1.Pages
             IWebElement addcertificate = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[5]/div[1]/div[2]/div/div/div[3]/input[1]"));
             addcertificate.Click();
         }
-        public void editCertification(IWebDriver driver)
+        public string getCertificate()// get languages table for assertion
+        {
+            Thread.Sleep(1500);
+            IWebElement newcer = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[5]/div[1]/div[2]/div/table"));
+            return newcer.GetAttribute("outerText").ToString();
+
+        }
+        public void EditCertification(string certificate, string Year, string From)
         {
             //identifycertification button
             IWebElement cereditbutton = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[1]/a[4]"));
@@ -45,21 +51,25 @@ namespace Automation_Project_1.Pages
             //edit cer tool box
             IWebElement cer = driver.FindElement(By.Name("certificationName"));
             cer.Clear();
-            cer.SendKeys("ASTQB");
+            cer.SendKeys(certificate);
             // edi from details
             IWebElement from = driver.FindElement(By.Name("certificationFrom"));
             cer.Clear();
-            from.SendKeys("US");
-            // edit year details
-            IWebElement year = driver.FindElement(By.Name("certificationYear"));
-            year.Click();
-            IWebElement yearcer = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[5]/div[1]/div[2]/div/table/tbody/tr/td/div/div/div[3]/select/option[2]"));
-            yearcer.Click();
+            from.SendKeys(From);
+            Thread.Sleep(700);
+            SelectElement yearlevelDropdown = new SelectElement(driver.FindElement(By.Name("level")));
+            yearlevelDropdown.SelectByValue(Year);
+            Thread.Sleep(1000);
+            //// edit year details
+            //IWebElement year = driver.FindElement(By.Name("certificationYear"));
+            //year.Click();
+            //IWebElement yearcer = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[5]/div[1]/div[2]/div/table/tbody/tr/td/div/div/div[3]/select/option[2]"));
+            //yearcer.Click();
             // click on update button
             IWebElement updatecer = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[5]/div[1]/div[2]/div/table/tbody/tr/td/div/span/input[1]"));
             updatecer.Click();
         }
-        public void DelCertification(IWebDriver driver)
+        public void DelCertification()
         {
             //identifycertification button
             IWebElement delcerbutton = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[1]/a[4]"));

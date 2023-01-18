@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <OutputType>Exe</OutputType>
+    <OutputType>Library</OutputType>
     <TargetFramework>net6.0</TargetFramework>
     <RootNamespace>Automation_Project_1</RootNamespace>
     <ImplicitUsings>enable</ImplicitUsings>
@@ -24,8 +24,6 @@
   <ItemGroup>
     <Folder Include="step definitions\" />
     <Folder Include="Tests\" />
-    <Folder Include="Utilities\" />
-    <Folder Include="Pages\" />
   </ItemGroup>
 
 </Project>

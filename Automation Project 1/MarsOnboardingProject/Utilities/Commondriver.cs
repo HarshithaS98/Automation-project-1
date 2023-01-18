@@ -12,21 +12,10 @@ namespace MarsOnboardingProject.Utilities
 {
     public class CommonDriver
     {
-        public IWebDriver driver;
+        public static IWebDriver driver;
 
-
-        public void loginactions()
-        {
-            driver = new ChromeDriver();
-            loginpPage loginPageObj = new loginpPage();
-            loginPageObj.loginActions(driver);
-        }
-
-        public void CloseTestRun()
-        {
-            driver.Quit();
-        }
-
-    }
-
+    } 
 }
+       
+
+     

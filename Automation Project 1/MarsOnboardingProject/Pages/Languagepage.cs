@@ -1,15 +1,19 @@
-﻿using OpenQA.Selenium;
+﻿using MarsOnboardingProject.Utilities;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Collections.Specialized.BitVector32;
 
 namespace Automation_Project_1.Pages
 {
-    public class LanguagePage
+    public class LanguagePage : CommonDriver
     {
-        public void Createlanguage(IWebDriver driver)
+        public void Createlanguage(string language,string level)
         {
             // Profile page
             //LANGUAGES
@@ -23,15 +27,17 @@ namespace Automation_Project_1.Pages
             Thread.Sleep(1500);
             // identifying add language tool box and enter values
             IWebElement addlanguage = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/div/div[1]/input"));
-            addlanguage.SendKeys("English");
+            addlanguage.SendKeys(language);
             Thread.Sleep(1500);
             // identifying choose language drop box
-            IWebElement chooselanguage = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/div/div[2]/select"));
-            chooselanguage.Click();     //  //*[@id="account-profile-section"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/div/div[2]/select   
-            Thread.Sleep(1500);
-            //identifying fluent in dropbox
-            IWebElement fluentdropbox = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/div/div[2]/select/option[4]"));
-            fluentdropbox.Click();
+            SelectElement chooselanguage = new SelectElement(driver.FindElement(By.Name("level")));
+            chooselanguage.SelectByValue(level);
+            //IWebElement chooselanguage = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/div/div[2]/select"));
+            //chooselanguage.Click();     //  //*[@id="account-profile-section"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/div/div[2]/select   
+            //Thread.Sleep(1500);
+            ////identifying fluent in dropbox
+            //IWebElement fluentdropbox = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/div/div[2]/select/option[4]"));
+            //fluentdropbox.Click();
             Thread.Sleep(1500);
             // click add button
             IWebElement addbutton = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/div/div[3]/input[1]"));
@@ -39,8 +45,14 @@ namespace Automation_Project_1.Pages
 
 
         }
-
-        public void EditLanguage(IWebDriver driver)
+        public string getlanguage()// get languages table for assertion
+        {
+            Thread.Sleep(1500);
+            IWebElement newlanguage = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table"));
+            return newlanguage.GetAttribute("outerText").ToString();
+           
+        }
+        public void EditLanguage(string language,string level)
         {
             Thread.Sleep(1000);
             // Identify language button
@@ -50,22 +62,23 @@ namespace Automation_Project_1.Pages
             // Identify edit button
             IWebElement editlanguage = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody/tr/td[3]/span[1]/i"));
             editlanguage.Click();
-            // clear the previous details for language
             IWebElement Clearlanguage = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody/tr/td/div/div[1]/input"));
-            Clearlanguage.Clear();
-            Clearlanguage.SendKeys("Telugu");
+            Clearlanguage.Clear();  // clear the previous details for language 
+            Clearlanguage.SendKeys(language);
             Thread.Sleep(700);
-
+            // identifying choose language drop box
+            SelectElement editchooselanguage = new SelectElement(driver.FindElement(By.Name("level")));
+            editchooselanguage.SelectByValue(level);
             // change the choose language dropbox
-            IWebElement editchooselanguage = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody/tr/td/div/div[2]/select/option[5]"));
-            editchooselanguage.Click();
-            Thread.Sleep(1500);
+            //IWebElement editchooselanguage = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody/tr/td/div/div[2]/select/option[5]"));
+            //editchooselanguage.Click();
+            //Thread.Sleep(1500);
             // save the edited values
             IWebElement updatelanguage = driver.FindElement(By.XPath("//*[@id=\"account-profile-section\"]/div/section[2]/div/div/div/div[3]/form/div[2]/div/div[2]/div/table/tbody/tr/td/div/span/input[1]"));
             updatelanguage.Click();
 
         }
-        public void DelLanguage(IWebDriver driver)
+        public void DelLanguage()
         {
             //Identify language button
             Thread.Sleep(1000);
